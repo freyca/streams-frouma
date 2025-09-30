@@ -5,7 +5,7 @@
 
 <body class="text-center" data-bs-theme="dark">
 
-    <main class="w-100 m-auto">
+    <main class="form-signin w-100 m-auto">
         <x-brand-copy />
 
         {{ $slot }}
