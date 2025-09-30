@@ -29,5 +29,6 @@
     </div>
 
     <x-chat />
-    <script src="/js/streaming-chat.js" defer='defer'></script>
+
+    @vite('resources/js/streaming-chat.js')
 </x-simple>
