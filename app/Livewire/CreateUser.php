@@ -34,6 +34,7 @@ class CreateUser extends Component
         ]);
 
         if ($this->storeUser()) {
+            session()->flash('success', 'Tu usuario se ha creado correctamente');
             $this->redirect(route('landing'));
         }
     }
