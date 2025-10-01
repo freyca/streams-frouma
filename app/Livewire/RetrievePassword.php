@@ -26,10 +26,11 @@ class RetrievePassword extends Component
         }
 
         if ($this->sendEmail()) {
-            session()->flash('success', 'Enviouse un mail coas instruccións para resetealo contrasinal. Por favor, revisa a bandexa de SPAM');
+            session()->flash('success', 'Enviouse un mail coas instruccións para resetealo contrasinal. Por favor, revisa a bandexa de SPAM.');
             $this->redirect(route('landing'));
         } else {
-            throw new \Exception('Error sending email');
+            session()->flash('error', 'Error al enviar el email. Por favor, inténtalo más tarde o contacta con un administrador.');
+            $this->redirect(route('landing'));
         }
     }
 
@@ -61,6 +62,6 @@ class RetrievePassword extends Component
             return true;
         }
 
-        dd($status);
+        return false;
     }
 }
