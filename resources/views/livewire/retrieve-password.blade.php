@@ -12,7 +12,7 @@
             <label for="email">Dirección de email</label>
             @if(!$userExists)
                 <div class="invalid-feedback">
-                    <div class="invalid-feedback">{{ $errorMessage }}</div>
+                    {{ $errorMessage }}
                 </div>
             @endif
         </div>
