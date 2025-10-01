@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectToStreaming;
+use App\Http\Middleware\RegisterEnabled;
 use App\Livewire\Login;
 use App\Livewire\CreateUser;
 use App\Livewire\ResetPassword;
@@ -26,9 +27,7 @@ Route::get('/', Login::class)->name('landing');
 Route::get('recuperar-contrasinal', RetrievePassword::class)->name('retrieve-password');
 Route::get('resetear-contrasinal/{token}', ResetPassword::class)->name('password.reset');
 
-if (config('froumastream.register_enabled')) {
-    Route::get('/crear-usuario', CreateUser::class)->name('create-user');
-}
+Route::get('/crear-usuario', CreateUser::class)->name('create-user')->middleware(RegisterEnabled::class);
 
 Route::get('/streaming', function () {
     return view('pages.streaming');

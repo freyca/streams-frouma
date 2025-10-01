@@ -9,31 +9,29 @@ use Livewire\Attributes\Validate;
 
 class CreateUser extends Component
 {
-    public bool $invalidEmail = false;
-
-    public bool $passwordMatch = true;
-
-    #[Validate('required|email')]
-    public string $email;
-
-    #[Validate('required|min:6')]
-    public string $password;
-
-    #[Validate('required|min:6')]
-    public string $password_2;
-
-    #[Validate('required|min:4')]
-    public string $name;
+    public string $name = '';
+    public string $email = '';
+    public string $password = '';
+    public string $password_2 = '';
 
     public function createUser()
     {
-        if (! $this->validatePassword()) {
-            return;
-        }
-
-        if (! $this->emailIsUnique()) {
-            return;
-        }
+        $this->validate([
+            'name' => 'required|min:4',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'password_2' => 'required|same:password',
+        ], [
+            'name.required' => 'O nome é obrigatorio',
+            'name.min' => 'O nome debe ter polo menos 4 caracteres',
+            'email.required' => 'Introduce un email',
+            'email.email' => 'O email debe ser válido',
+            'email.unique' => 'Este email xa está rexistrado',
+            'password.required' => 'Debes introducir un contrasinal',
+            'password.min' => 'A lonxitude mínima é de 6 caracteres',
+            'password_2.required' => 'Debes repetir o contrasinal',
+            'password_2.same' => 'Os contrasinais non coinciden',
+        ]);
 
         if ($this->storeUser()) {
             $this->redirect(route('landing'));
@@ -43,22 +41,6 @@ class CreateUser extends Component
     public function render()
     {
         return view('livewire.create-user');
-    }
-
-    private function validatePassword(): bool
-    {
-        $this->passwordMatch = $this->password === $this->password_2;
-
-        return $this->passwordMatch;
-    }
-
-    private function emailIsUnique(): bool
-    {
-        if (User::where('email', $this->email)->first()) {
-            $this->invalidEmail = true;
-        }
-
-        return ! $this->invalidEmail;
     }
 
     private function storeUser(): bool

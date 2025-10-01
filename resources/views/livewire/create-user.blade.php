@@ -1,37 +1,49 @@
 <form wire:submit.prevent="createUser" method="POST">
     @csrf
 
-    <div class="form-floating mb-2">
-        <input type="name" id="name" placeholder="John Doe" wire:model="name" class="form-control" required>
+    <div class="form-floating mb-3">
+        <input type="text" id="name" wire:model="name" required
+               placeholder=" "
+               class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}">
         <label for="name">Nome</label>
+        @error('name')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
-    <div class="form-floating mb-2">
-        <input type="email" id="email" placeholder="name@example.com" wire:model="email" required
-        @class([
-            'form-control',
-            'is-invalid' => $invalidEmail,
-        ])>
+    <div class="form-floating mb-3">
+        <input type="email" id="email" wire:model="email" required
+               placeholder=" "
+               class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
         <label for="email">Dirección de email</label>
+        @error('email')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
-    <div class="form-floating">
-        <input type="password" id="passwd" name="passwd" placeholder="Password" wire:model="password" required
-        @class([
-            'form-control',
-            'is-invalid' =>  ! $passwordMatch,
-        ])>
+    <div class="form-floating mb-3">
+        <input type="password" id="passwd" wire:model="password" required
+               placeholder=" "
+               class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}">
         <label for="passwd">Contrasinal</label>
+        @error('password')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
-    <div class="form-floating">
-        <input type="password" id="passwd-2" name="passwd-2" placeholder="Repeat password" wire:model="password_2" required
-        @class([
-            'form-control',
-            'is-invalid' => ! $passwordMatch,
-        ])>
+    <div class="form-floating mb-3">
+        <input type="password" id="passwd-2" wire:model="password_2" required
+               placeholder=" "
+               class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}">
         <label for="passwd-2">Repetir Contrasinal</label>
+        @error('password_2')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
-    <button class="w-100 btn btn-lg btn-secondary" type="submit">Crear Usuario</button>
+    <button class="w-100 btn btn-lg btn-secondary mt-4" type="submit">
+        Crear Usuario
+    </button>
+
+    <x-go-back />
 </form>

@@ -1,19 +1,24 @@
 <div>
     <p class="fs-6">Enviarémosche un mail para cambiar o contrasinal</p>
-    <p class="text-danger"><strong>Lembra revisar a bandexa de SPAM</strong></p>
+    <p class="text-warning"><strong>Lembra revisar a bandexa de SPAM</strong></p>
 
     <form wire:submit.prevent="sendPasswordResetEmail" method="POST">
         @csrf
 
-        <div class="form-floating mb-2">
-            <input type="email" id="email" placeholder="name@example.com" wire:model="email" required
-            @class([
-                'form-control',
-                'is-invalid' => ! $userExists,
-            ])>
+        <div class="form-floating mb-3">
+            <input type="email" id="email" wire:model="email" required
+                   placeholder=" "
+                   class="form-control {{ ! $userExists ? 'is-invalid' : '' }}">
             <label for="email">Dirección de email</label>
+            @if(!$userExists)
+                <div class="invalid-feedback">
+                    <div class="invalid-feedback">{{ $errorMessage }}</div>
+                </div>
+            @endif
         </div>
 
         <button class="w-100 btn btn-lg btn-secondary" type="submit">Enviar email</button>
     </form>
+
+    <x-go-back />
 </div>

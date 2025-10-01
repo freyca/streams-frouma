@@ -8,21 +8,28 @@ use Livewire\Attributes\Validate;
 
 class Login extends Component
 {
-    #[Validate('required|email')]
-    public string $user;
-
-    #[Validate('required|min:6')]
-    public string $password;
+    public string $user = '';
+    public string $password = '';
 
     public function login()
     {
+        $this->validate([
+            'user' => 'required|email',
+            'password' => 'required|min:6',
+        ], [
+            'user.required' => 'Introduce unha conta de correo',
+            'user.email' => 'A conta de email non é válida',
+            'password.required' => 'Introduce o teu contrasinal',
+            'password.min' => 'O contrasinal debe ter mínimo 6 caracteres',
+        ]);
+
         if (Auth::attempt([
             'email' => $this->user,
             'password' => $this->password,
         ])) {
             $this->redirect(route('streaming'));
         } else {
-            session()->flash('error', 'Credenciales incorrectas');
+            session()->flash('error', 'Credenciais incorrectas');
         }
     }
 
