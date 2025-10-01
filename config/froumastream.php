@@ -19,4 +19,11 @@ return [
     */
     'login_enabled' => env('APP_LOGIN_ENABLED', true),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Brand image, it will be shown on upper part of website in brand-copy view
+    |--------------------------------------------------------------------------
+    */
+    'brand_image' => env('BRAND_IMAGE', '/images/logo_frouma.jpeg'),
+
 ];
