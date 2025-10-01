@@ -26,4 +26,11 @@ return [
     */
     'brand_image' => env('BRAND_IMAGE', '/images/logo_frouma.jpeg'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Playback URL, the videojs stream
+    |--------------------------------------------------------------------------
+    */
+    'videojs_playback_url' => env('VIDEOJS_PLAYBACK_URL'),
+
 ];
