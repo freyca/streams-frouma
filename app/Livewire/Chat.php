@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\InteractsWithChat;
+use App\Traits\InteractsWithChat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 

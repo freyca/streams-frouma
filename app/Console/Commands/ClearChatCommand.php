@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\InteractsWithChat;
+use App\Traits\InteractsWithChat;
 use Illuminate\Console\Command;
 
 class ClearChatCommand extends Command

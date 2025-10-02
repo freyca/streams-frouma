@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\InteractsWithChat;
+use App\Traits\InteractsWithChat;
 use Livewire\Component;
 
 class ChatQuestions extends Component
