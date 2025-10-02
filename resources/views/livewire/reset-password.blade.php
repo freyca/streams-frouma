@@ -1,4 +1,6 @@
-<div>
+<div class="form-signin m-auto">
+    <x-brand-copy />
+
     <form wire:submit.prevent="sendPasswordResetEmail" method="POST">
         @csrf
 
@@ -26,4 +28,6 @@
     </form>
 
     <x-go-back />
+
+    <x-footer />
 </div>

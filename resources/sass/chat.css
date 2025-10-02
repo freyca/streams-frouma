@@ -70,33 +70,3 @@
 .bd-mode-toggle {
     z-index: 1500;
 }
-
-/**
-.bubble-chat {
-    background-color: #27233A;
-}
-
-.btn-send {
-    background-color: #DCC48E;
-}
-
-.btn-send:hover, .btn-send:active {
-    background-color: #B3C0A4;
-}
-
-.ask-question {
-    background-color: #27233A;
-}
-
-.ask-question:hover {
-    background-color: #505168;
-}
-
-.offcanvas-body {
-    background-color: #505168;
-}
-
-.user-email {
-    color: #DCC48E;
-}
-**/

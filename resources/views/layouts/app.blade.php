@@ -5,12 +5,10 @@
 
 <body class="text-center" data-bs-theme="dark">
 
-    <main class="form-signin w-100 m-auto">
-        <x-brand-copy />
+    <main class="w-100 m-auto">
 
         {{ $slot }}
 
-        <x-frouma-copy />
     </main>
 
     <x-footer />

@@ -1,4 +1,6 @@
-<div>
+<div class="form-signin m-auto">
+    <x-brand-copy />
+
     <p class="fs-6">@lang("We will send you an email to change your password.")</p>
     <p class="text-warning"><strong>@lang("Remember to check SPAM box")</strong></p>
 
@@ -21,4 +23,6 @@
     </form>
 
     <x-go-back />
+
+    <x-footer />
 </div>

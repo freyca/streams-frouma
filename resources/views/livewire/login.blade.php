@@ -1,4 +1,6 @@
-<div>
+<div class="form-signin m-auto">
+    <x-brand-copy />
+
     {{-- Alertas de sesión --}}
     @if (session('success'))
         <div class="alert alert-success fade show" role="alert">
@@ -55,4 +57,6 @@
             </a>
         </section>
     @endif
+
+    <x-footer />
 </div>
