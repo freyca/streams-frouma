@@ -2,22 +2,21 @@
 
 namespace App\Livewire;
 
+use App\InteractsWithChat;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
 
 class ChatQuestions extends Component
 {
-    private string $chat_file = 'chat_file.json';
+    use InteractsWithChat;
 
     public array $messages = [];
 
     public function mount()
     {
-        if (! Storage::exists($this->chat_file)) {
-            Storage::put($this->chat_file, '');
-        }
+        $this->initChat();
 
-        $this->fetchMessages();
+        $this->fetchChatMessages();
     }
 
     public function render()
@@ -25,8 +24,8 @@ class ChatQuestions extends Component
         return view('livewire.chat-questions');
     }
 
-    public function fetchMessages()
+    public function fetchChatMessages()
     {
-        $this->messages = json_decode(Storage::get($this->chat_file), true) ?? [];
+        $this->messages = $this->getChatMessages();
     }
 }
