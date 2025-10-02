@@ -8,18 +8,18 @@ use Livewire\Attributes\Validate;
 
 class Login extends Component
 {
-    public string $user = '';
+    public string $email = '';
     public string $password = '';
 
     public function login()
     {
         $this->validate([
-            'user' => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
         if (Auth::attempt([
-            'email' => $this->user,
+            'email' => $this->email,
             'password' => $this->password,
         ])) {
             $this->redirect(route('streaming'));

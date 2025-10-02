@@ -18,9 +18,9 @@
             @csrf
 
             <div class="form-floating mb-3">
-                <input type="email" id="user_name" wire:model="user" required
+                <input type="email" id="user_name" wire:model="email" required
                        placeholder=" "
-                       class="form-control {{ $errors->has('user') ? 'is-invalid' : '' }}">
+                       class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}">
                 <label for="user_name">@lang('Email')</label>
                 @error('user')
                     <div class="invalid-feedback">{{ $message }}</div>
