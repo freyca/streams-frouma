@@ -31,6 +31,6 @@
         })();
     </script>
 
+    <livewire:chat />
 
-    <x-chat />
 </x-layouts.stream>
