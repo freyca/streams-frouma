@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\InteractsWithChat;
 use Livewire\Component;
-use Illuminate\Support\Facades\Storage;
 
 class ChatQuestions extends Component
 {

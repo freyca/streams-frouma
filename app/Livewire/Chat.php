@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\InteractsWithChat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Illuminate\Support\Facades\Storage;
 
 class Chat extends Component
 {
