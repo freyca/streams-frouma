@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
 class Chat extends Component
 {
@@ -12,17 +12,11 @@ class Chat extends Component
 
     public string $question = '';
 
-    public array $messages = [];
-
-    protected $listeners = ['messageReceived' => 'fetchMessages'];
-
     public function mount()
     {
         if (! Storage::exists($this->chat_file)) {
             Storage::put($this->chat_file, '');
         }
-
-        $this->fetchMessages();
     }
 
     public function sendMessage()
@@ -38,8 +32,6 @@ class Chat extends Component
         $this->messageReceived();
 
         $this->reset('question');
-
-        $this->dispatch('messageReceived');
     }
 
     public function render()
@@ -67,10 +59,5 @@ class Chat extends Component
 
         $fullPath = Storage::path($this->chat_file);
         file_put_contents($fullPath, $coded_data, LOCK_EX);
-    }
-
-    public function fetchMessages()
-    {
-        $this->messages = json_decode(Storage::get($this->chat_file), true) ?? [];
     }
 }
