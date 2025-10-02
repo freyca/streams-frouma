@@ -23,8 +23,6 @@ class ClearChatCommand extends Command
      */
     protected $description = 'Clears the chat questions';
 
-    private string $chat_file = 'chat_file.json';
-
     /**
      * Execute the console command.
      */
