@@ -65,7 +65,7 @@ class Chat extends Component
         array_push($actual_decoded_data, $received_data);
         $coded_data = json_encode($actual_decoded_data);
 
-        $fullPath = Storage::disk('local')->path($this->chat_file);
+        $fullPath = Storage::path($this->chat_file);
         file_put_contents($fullPath, $coded_data, LOCK_EX);
     }
 
