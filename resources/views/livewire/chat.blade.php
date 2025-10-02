@@ -13,7 +13,7 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div id="chat-content" class="text-start overflow-scroll" style="overflow: auto;">
+            <div id="chat-content" class="text-start overflow-scroll" style="overflow: auto;" wire:poll="fetchMessages">
                 @foreach ($this->messages as $message)
                     <p class="rounded p-2 bg-dark-subtle bubble-chat">
                         <small class="text-secondary">

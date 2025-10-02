@@ -33,5 +33,4 @@ Route::get('/streaming', function () {
     return view('pages.streaming');
 })
     ->name('streaming')
-    ->middleware(Authenticate::class)
-    ->withoutMiddleware(RedirectToStreaming::class);
+    ->middleware(Authenticate::class);

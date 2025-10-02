@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-bs-theme="auto">
+<html lang="{{  config('app.locale') }}" data-bs-theme="auto">
 
 <x-head />
 
