@@ -60,7 +60,7 @@ class ResetPassword extends Component
             $this->redirect(route('landing'));
         } else {
             session()->flash('error', __('Password change error'));
-            dd($status);
+            $this->redirect(route('landing'));
         }
     }
 
