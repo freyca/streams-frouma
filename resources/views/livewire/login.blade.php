@@ -50,7 +50,6 @@
     {{-- Sección de rexistro --}}
     @if(config('froumastream.register_enabled'))
         <section class="mt-5 mb-4">
-            <hr/>
             <p>@lang("Don't you have a user?")</p>
             <a href="/crear-usuario">
                 <button class="w-100 btn btn-lg btn-secondary">@lang('Create user')</button>
