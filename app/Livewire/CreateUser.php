@@ -9,8 +9,11 @@ use Livewire\Component;
 class CreateUser extends Component
 {
     public string $name = '';
+
     public string $email = '';
+
     public string $password = '';
+
     public string $password_2 = '';
 
     public function createUser()
@@ -39,7 +42,7 @@ class CreateUser extends Component
             $user = new User([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => Hash::make($this->password)
+                'password' => Hash::make($this->password),
             ]);
 
             return $user->save();

@@ -7,11 +7,10 @@ use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Component;
-use Livewire\Attributes\Url;
-use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Url;
+use Livewire\Component;
 
 class ResetPassword extends Component
 {
@@ -25,7 +24,6 @@ class ResetPassword extends Component
 
     public string $password_2;
 
-
     public function sendPasswordResetEmail()
     {
         $this->validate([
@@ -33,7 +31,7 @@ class ResetPassword extends Component
             'password_2' => 'required|same:password',
         ]);
 
-        if (!$this->validateTokenAndEmail()) {
+        if (! $this->validateTokenAndEmail()) {
             session()->flash('error', 'Password change error.');
             $this->redirect(route('landing'));
         }
@@ -48,7 +46,7 @@ class ResetPassword extends Component
 
             function (User $user, string $password) {
                 $user->forceFill([
-                    'password' => Hash::make($password)
+                    'password' => Hash::make($password),
                 ])->setRememberToken(Str::random(60));
 
                 $user->save();
@@ -69,7 +67,7 @@ class ResetPassword extends Component
     public function mount()
     {
         if (! $this->validateTokenAndEmail()) {
-            session()->flash('error', __("It is not possible to reset your password. Ask for another email to reset it or contact an administrator."));
+            session()->flash('error', __('It is not possible to reset your password. Ask for another email to reset it or contact an administrator.'));
             $this->redirect(route('landing'));
         }
     }
@@ -83,10 +81,10 @@ class ResetPassword extends Component
     {
         $password_resets = DB::table('password_resets')->where('email', $this->email)->first();
 
-        if ($password_resets &&  Hash::check($this->token, $password_resets->token)) {
+        if ($password_resets && Hash::check($this->token, $password_resets->token)) {
             $createdAt = Carbon::parse($password_resets->created_at);
 
-            if (!Carbon::now()->greaterThan($createdAt->addMinutes(config('auth.passwords.users.expire')))) {
+            if (! Carbon::now()->greaterThan($createdAt->addMinutes(config('auth.passwords.users.expire')))) {
                 return true;
             }
         }

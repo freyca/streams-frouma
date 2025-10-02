@@ -18,7 +18,7 @@ class Chat extends Component
 
     public function mount()
     {
-        if (!Storage::exists($this->chat_file)) {
+        if (! Storage::exists($this->chat_file)) {
             Storage::put($this->chat_file, '');
         }
 
@@ -27,7 +27,7 @@ class Chat extends Component
 
     public function sendMessage()
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return;
         }
 
@@ -49,17 +49,17 @@ class Chat extends Component
 
     public function messageReceived()
     {
-        $received_data = array(
-            'date'     => date('H:i'),
-            'user'     => auth()->user()->name,
+        $received_data = [
+            'date' => date('H:i'),
+            'user' => auth()->user()->name,
             'question' => $this->question,
-        );
+        ];
 
         $chat_file_contents = Storage::get($this->chat_file);
         $actual_decoded_data = json_decode($chat_file_contents, true);
 
         if (is_null($actual_decoded_data)) {
-            $actual_decoded_data = array();
+            $actual_decoded_data = [];
         }
 
         array_push($actual_decoded_data, $received_data);

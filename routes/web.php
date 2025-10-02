@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\RedirectToStreaming;
 use App\Http\Middleware\RegisterEnabled;
-use App\Livewire\Login;
 use App\Livewire\CreateUser;
+use App\Livewire\Login;
 use App\Livewire\ResetPassword;
 use App\Livewire\RetrievePassword;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

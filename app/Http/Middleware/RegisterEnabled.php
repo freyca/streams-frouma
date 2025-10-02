@@ -15,7 +15,7 @@ class RegisterEnabled
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!config('froumastream.register_enabled')) {
+        if (! config('froumastream.register_enabled')) {
             abort(404); // ou redirect a outra páxina se queres
         }
 

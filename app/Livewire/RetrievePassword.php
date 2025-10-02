@@ -9,7 +9,9 @@ use Livewire\Component;
 class RetrievePassword extends Component
 {
     public bool $userExists = true;
+
     public string $errorMessage = '';
+
     public string $email = '';
 
     public function sendPasswordResetEmail()

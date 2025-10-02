@@ -194,7 +194,6 @@ return [
     |
     */
 
-
     'attributes' => [
         'password' => 'contraseña',
         'password_2' => 'repetir contraseña',

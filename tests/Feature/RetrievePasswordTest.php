@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Livewire\RetrievePassword;
+use App\Models\User;
 use Illuminate\Support\Facades\Password;
 use Livewire\Livewire;
 

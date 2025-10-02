@@ -2,7 +2,6 @@
 
 use App\Livewire\Login;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 
 uses(Tests\TestCase::class, Illuminate\Foundation\Testing\RefreshDatabase::class);
