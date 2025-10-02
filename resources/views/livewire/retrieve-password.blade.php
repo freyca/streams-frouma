@@ -1,6 +1,6 @@
 <div>
-    <p class="fs-6">Enviarémosche un mail para cambiar o contrasinal</p>
-    <p class="text-warning"><strong>Lembra revisar a bandexa de SPAM</strong></p>
+    <p class="fs-6">@lang("We will send you an email to change your password.")</p>
+    <p class="text-warning"><strong>@lang("Remember to check SPAM box")</strong></p>
 
     <form wire:submit.prevent="sendPasswordResetEmail" method="POST">
         @csrf
@@ -9,7 +9,7 @@
             <input type="email" id="email" wire:model="email" required
                    placeholder=" "
                    class="form-control {{ ! $userExists ? 'is-invalid' : '' }}">
-            <label for="email">Dirección de email</label>
+            <label for="email">@lang('Email')</label>
             @if(!$userExists)
                 <div class="invalid-feedback">
                     {{ $errorMessage }}
@@ -17,7 +17,7 @@
             @endif
         </div>
 
-        <button class="w-100 btn btn-lg btn-secondary" type="submit">Enviar email</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="submit">@lang('Send email')</button>
     </form>
 
     <x-go-back />

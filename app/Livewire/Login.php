@@ -16,11 +16,6 @@ class Login extends Component
         $this->validate([
             'user' => 'required|email',
             'password' => 'required|min:6',
-        ], [
-            'user.required' => 'Introduce unha conta de correo',
-            'user.email' => 'A conta de email non é válida',
-            'password.required' => 'Introduce o teu contrasinal',
-            'password.min' => 'O contrasinal debe ter mínimo 6 caracteres',
         ]);
 
         if (Auth::attempt([
@@ -29,7 +24,7 @@ class Login extends Component
         ])) {
             $this->redirect(route('streaming'));
         } else {
-            session()->flash('error', 'Credenciais incorrectas');
+            session()->flash('error', __('Invalid credentials'));
         }
     }
 

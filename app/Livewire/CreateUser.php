@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 
 class CreateUser extends Component
 {
@@ -21,20 +20,10 @@ class CreateUser extends Component
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'password_2' => 'required|same:password',
-        ], [
-            'name.required' => 'O nome é obrigatorio',
-            'name.min' => 'O nome debe ter polo menos 4 caracteres',
-            'email.required' => 'Introduce un email',
-            'email.email' => 'O email debe ser válido',
-            'email.unique' => 'Este email xa está rexistrado',
-            'password.required' => 'Debes introducir un contrasinal',
-            'password.min' => 'A lonxitude mínima é de 6 caracteres',
-            'password_2.required' => 'Debes repetir o contrasinal',
-            'password_2.same' => 'Os contrasinais non coinciden',
         ]);
 
         if ($this->storeUser()) {
-            session()->flash('success', 'Tu usuario se ha creado correctamente');
+            session()->flash('success', __('User has been succesfully created'));
             $this->redirect(route('landing'));
         }
     }

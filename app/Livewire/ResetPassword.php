@@ -31,15 +31,10 @@ class ResetPassword extends Component
         $this->validate([
             'password' => 'required|min:6',
             'password_2' => 'required|same:password',
-        ], [
-            'password.required' => 'Debes introducir un contrasinal',
-            'password.min' => 'A lonxitude mínima é de 6 caracteres',
-            'password_2.required' => 'Debes repetir o contrasinal',
-            'password_2.same' => 'Os contrasinais non coinciden',
         ]);
 
         if (!$this->validateTokenAndEmail()) {
-            session()->flash('error', 'Error cambiando la contraseña.');
+            session()->flash('error', 'Password change error.');
             $this->redirect(route('landing'));
         }
 
@@ -63,10 +58,10 @@ class ResetPassword extends Component
         );
 
         if ($status === Password::PasswordReset) {
-            session()->flash('success', 'Contraseña modificada correctamente.');
+            session()->flash('success', __('Password succesfully changed.'));
             $this->redirect(route('landing'));
         } else {
-            session()->flash('error', 'Error cambiando la contraseña');
+            session()->flash('error', __('Password change error'));
             dd($status);
         }
     }
@@ -74,7 +69,7 @@ class ResetPassword extends Component
     public function mount()
     {
         if (! $this->validateTokenAndEmail()) {
-            session()->flash('error', 'No es posible resetear tu contraseña. Solicita un nuevo mail para resetearla o contacta con un administrador.');
+            session()->flash('error', __("It is not possible to reset your password. Ask for another email to reset it or contact an administrator."));
             $this->redirect(route('landing'));
         }
     }

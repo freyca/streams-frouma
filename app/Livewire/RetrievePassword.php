@@ -16,9 +16,6 @@ class RetrievePassword extends Component
     {
         $this->validate([
             'email' => 'required|email',
-        ], [
-            'email.required' => 'Introduce unha conta de correo',
-            'email.email' => 'A conta de email non é válida',
         ]);
 
         if (! $this->validateUserExists()) {
@@ -26,10 +23,10 @@ class RetrievePassword extends Component
         }
 
         if ($this->sendEmail()) {
-            session()->flash('success', 'Enviouse un mail coas instruccións para resetealo contrasinal. Por favor, revisa a bandexa de SPAM.');
+            session()->flash('success', __('A mail has been sent with instructions to reset your password. Please, check SPAM box.'));
             $this->redirect(route('landing'));
         } else {
-            session()->flash('error', 'Error al enviar el email. Por favor, inténtalo más tarde o contacta con un administrador.');
+            session()->flash('error', __('Mail sent error. Please try again or contact an administrator.'));
             $this->redirect(route('landing'));
         }
     }
@@ -46,7 +43,7 @@ class RetrievePassword extends Component
 
         if (! User::where('email', $this->email)->first()) {
             $this->userExists = false;
-            $this->errorMessage = 'O usuario non existe';
+            $this->errorMessage = __('User does not exists');
         }
 
         return $this->userExists;

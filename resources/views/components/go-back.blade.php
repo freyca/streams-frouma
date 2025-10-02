@@ -1,1 +1,1 @@
-<a href="{{ route('landing') }}" class="mt-4 btn btn-link">&larr; Volver atrás</a>
+<a href="{{ route('landing') }}" class="mt-4 btn btn-link">&larr; @lang('Go back')</a>

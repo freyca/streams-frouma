@@ -21,7 +21,7 @@
                 <input type="email" id="user_name" wire:model="user" required
                        placeholder=" "
                        class="form-control {{ $errors->has('user') ? 'is-invalid' : '' }}">
-                <label for="user_name">Dirección de email</label>
+                <label for="user_name">@lang('Email')</label>
                 @error('user')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -31,17 +31,17 @@
                 <input type="password" id="passwd" wire:model="password" required
                        placeholder=" "
                        class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}">
-                <label for="passwd">Contraseña</label>
+                <label for="passwd">@lang('Password')</label>
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button class="w-100 btn btn-lg btn-secondary" type="submit">Acceder</button>
+            <button class="w-100 btn btn-lg btn-secondary" type="submit">@lang('Login')</button>
         </form>
 
         <p class="mt-2">
-            <small><a href="/recuperar-contrasinal">Olvidache o teu contrasinal?</a></small>
+            <small><a href="/recuperar-contrasinal">@lang('Did you forget your password?')</a></small>
         </p>
     @endif
 
@@ -49,9 +49,9 @@
     @if(config('froumastream.register_enabled'))
         <section class="mt-5 mb-4">
             <hr/>
-            <p>Non tes un usuario creado?</p>
+            <p>@lang("Don't you have a user?")</p>
             <a href="/crear-usuario">
-                <button class="w-100 btn btn-lg btn-secondary">Crear usuario</button>
+                <button class="w-100 btn btn-lg btn-secondary">@lang('Create user')</button>
             </a>
         </section>
     @endif
