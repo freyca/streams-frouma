@@ -27,8 +27,8 @@ it('renders the ResetPassword component', function () {
         'token' => $this->token,
         'email' => $this->user->email,
     ])
-        ->assertSee('Contrasinal')
-        ->assertSee('Repetir Contrasinal')
+        ->assertSee(__('Password'))
+        ->assertSee(__('Repeat password'))
         ->assertSeeHtml('id="passwd"')
         ->assertSeeHtml('id="passwd-2"');
 });

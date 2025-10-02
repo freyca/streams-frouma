@@ -15,9 +15,9 @@ beforeEach(function () {
 
 it('renders the RetrievePassword component', function () {
     Livewire::test(RetrievePassword::class)
-        ->assertSee('Enviarémosche un mail para cambiar o contrasinal')
-        ->assertSee('Dirección de email')
-        ->assertSee('Enviar email');
+        ->assertSee(__('We will send you an email to change your password.'))
+        ->assertSee(__('Email'))
+        ->assertSee(__('Send email'));
 });
 
 it('validates email is required', function () {
@@ -39,7 +39,7 @@ it('shows error if user does not exist', function () {
         ->set('email', 'nonexistent@example.com')
         ->call('sendPasswordResetEmail')
         ->assertSet('userExists', false)
-        ->assertSet('errorMessage', 'O usuario non existe');
+        ->assertSet('errorMessage', __('User does not exists'));
 });
 
 it('sends password reset email successfully if user exists', function () {
@@ -54,6 +54,6 @@ it('sends password reset email successfully if user exists', function () {
         ->assertRedirect(route('landing'))
         ->assertSessionHas(
             'success',
-            'Enviouse un mail coas instruccións para resetealo contrasinal. Por favor, revisa a bandexa de SPAM'
+            __('A mail has been sent with instructions to reset your password. Please, check SPAM box.')
         );
 });

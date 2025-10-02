@@ -20,7 +20,7 @@ it('only allows access to the route when register_enabled is true', function () 
 
 it('renders the CreateUser component', function () {
     Livewire::test(\App\Livewire\CreateUser::class)
-        ->assertSee('Nome');
+        ->assertSee(__('Name'));
 });
 
 it('requires all fields', function () {
