@@ -43,7 +43,7 @@
         </form>
 
         <p class="mt-2">
-            <small><a href="/recuperar-contrasinal">@lang('Did you forget your password?')</a></small>
+            <small><a href="{{ route('retrieve-password') }}">@lang('Did you forget your password?')</a></small>
         </p>
     @endif
 

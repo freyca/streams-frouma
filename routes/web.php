@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Login::class)->name('landing');
 
 // Password reset routes...
-Route::get('recuperar-contrasinal', RetrievePassword::class)->name('retrieve-password');
-Route::get('resetear-contrasinal/{token}', ResetPassword::class)->name('password.reset');
+Route::get('recuperar-contraseña', RetrievePassword::class)->name('retrieve-password');
+Route::get('resetear-contraseña/{token}', ResetPassword::class)->name('password.reset');
 
 Route::get('/crear-usuario', CreateUser::class)->name('create-user')->middleware(RegisterEnabled::class);
 
