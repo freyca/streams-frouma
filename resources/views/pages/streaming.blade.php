@@ -16,8 +16,10 @@
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasChat" aria-labelledby="offcanvasChatLabel">
             <div class="offcanvas-header bg-body-tertiary text-light-subtle">
-                <h5 class="offcanvas-title" id="offcanvasChatLabel">@lang('Here you can ask any question about stream content')</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <h5 class="offcanvas-title me-2" id="offcanvasChatLabel">
+                    @lang('Here you can ask any question about stream content')
+                </h5>
+                <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <livewire:chat-questions />
