@@ -8,7 +8,7 @@
     </div>
 
     <div>
-        <div class="position-fixed bottom-0 start-0">
+        <div class="position-fixed bottom-0 end-0">
             <button id="chat-button" class="btn rounded-0 rounded-top bg-light-subtle text-light ask-question" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasChat" aria-controls="offcanvasChat">
                 @lang('Do you have any question?')
             </button>
