@@ -1,8 +1,4 @@
 <x-layouts.app>
-    {{--
-    @vite([ 'resources/js/videojs.js' ])
-    --}}
-
     <div class="container">
         <div class="row">
             <div class="video-container">
@@ -34,6 +30,7 @@
     </div>
 
     <script>
+        // Video controls
         (function play() {
             // Get playback URL from Amazon IVS API
             var PLAYBACK_URL = "{{ config('froumastream.videojs_playback_url') }}";
