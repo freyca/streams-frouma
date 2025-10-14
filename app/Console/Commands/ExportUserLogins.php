@@ -36,25 +36,17 @@ class ExportUserLogins extends Command
 
         $csv->insertOne($this->csv_header);
 
-        foreach (User::all() as $user) {
-            $user_logins = $user->loginHistory();
-
-            if ($user_logins->count() === 0) {
-                continue;
-            }
-
-            $user_logins->each(function ($user_login) use ($csv) {
-                $record = [
+        User::all()->each(function ($user) use ($csv) {
+            $user->loginHistory()->each(function ($user_login) use ($csv) {
+                $csv->insertOne([
                     $user_login->user->email,
                     $user_login->user->name,
                     $user_login->ip_address,
                     $user_login->created_at,
                     $user_login->updated_at,
-                ];
-
-                $csv->insertOne($record);
+                ]);
             });
-        }
+        });
 
         $csv->toString();
 
