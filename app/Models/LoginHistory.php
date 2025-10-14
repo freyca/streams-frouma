@@ -33,7 +33,7 @@ class LoginHistory extends Model
 
         $diffInSeconds = $lastLogin->updated_at->diffInSeconds(now());
 
-        if ($diffInSeconds < 60) {
+        if ($diffInSeconds < 300) {
             $lastLogin->touch();
             return;
         }

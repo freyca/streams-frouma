@@ -19,3 +19,4 @@ yarn-error.log
 /test-results
 /.phpunit.cache/*
 /build/coverage/*
+/storage/login_history.csv

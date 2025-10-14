@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected function loginHistory(): HasMany
+    public function loginHistory(): HasMany
     {
         return $this->hasMany(LoginHistory::class);
     }
