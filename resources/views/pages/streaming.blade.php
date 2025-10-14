@@ -30,23 +30,26 @@
     </div>
 
     <script>
-        // Video controls
-        (function play() {
-            // Get playback URL from Amazon IVS API
-            var PLAYBACK_URL = "{{ config('froumastream.videojs_playback_url') }}";
+        window.onload = (event) => {
+            // Video controls
+            (function play() {
+                // Get playback URL from Amazon IVS API
+                var PLAYBACK_URL = "{{ config('froumastream.videojs_playback_url') }}";
 
-            // Register Amazon IVS as playback technology for Video.js
-            registerIVSTech(videojs);
+                // Register Amazon IVS as playback technology for Video.js
+                registerIVSTech(videojs);
 
-            //// Initialize player
-            var player = videojs('amazon-ivs-videojs', {
-               techOrder: ["AmazonIVS"]
-            }, () => {
-               console.log('Player is ready to use!');
-               // Play stream
-               player.src(PLAYBACK_URL);
-            });
-        })();
+                //// Initialize player
+                var player = videojs('amazon-ivs-videojs', {
+                   techOrder: ["AmazonIVS"]
+                }, () => {
+                   console.log('Player is ready to use!');
+                   // Play stream
+                   player.src(PLAYBACK_URL);
+                });
+            })();
+        };
+
 
         // Shows last question on opening chat
         document.querySelector("#chat-button").addEventListener("click", function() {
