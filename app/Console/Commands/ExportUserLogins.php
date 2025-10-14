@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\LoginHistory;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -36,16 +37,14 @@ class ExportUserLogins extends Command
 
         $csv->insertOne($this->csv_header);
 
-        User::all()->each(function ($user) use ($csv) {
-            $user->loginHistory()->each(function ($user_login) use ($csv) {
-                $csv->insertOne([
-                    $user_login->user->email,
-                    $user_login->user->name,
-                    $user_login->ip_address,
-                    $user_login->created_at,
-                    $user_login->updated_at,
-                ]);
-            });
+        LoginHistory::with('user')->get()->each(function ($login_record) use ($csv) {
+            $csv->insertOne([
+                $login_record->user->email,
+                $login_record->user->name,
+                $login_record->ip_address,
+                $login_record->created_at,
+                $login_record->updated_at,
+            ]);
         });
 
         $csv->toString();
