@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -37,25 +38,33 @@ class ChatService
 
     public function saveChatQuestion(string $date, string $user, string $question)
     {
-        $chat_file_contents = Storage::get(self::CHAT_FILENAME);
-        $actual_decoded_data = json_decode($chat_file_contents, true);
+        $lock = Cache::lock('add-chat-question', 5);
 
-        if (is_null($actual_decoded_data)) {
-            $actual_decoded_data = [];
+        try {
+            $chat_file_contents = Storage::get(self::CHAT_FILENAME);
+            $actual_decoded_data = json_decode($chat_file_contents, true);
+
+            if (is_null($actual_decoded_data)) {
+                $actual_decoded_data = [];
+            }
+
+            array_push(
+                $actual_decoded_data,
+                [
+                    'date' => $date,
+                    'user' => $user,
+                    'question' => $question,
+                ]
+            );
+
+            $coded_data = json_encode($actual_decoded_data);
+
+            $fullPath = Storage::path(self::CHAT_FILENAME);
+            file_put_contents($fullPath, $coded_data, LOCK_EX);
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            $lock->release();
         }
-
-        array_push(
-            $actual_decoded_data,
-            [
-                'date' => $date,
-                'user' => $user,
-                'question' => $question,
-            ]
-        );
-
-        $coded_data = json_encode($actual_decoded_data);
-
-        $fullPath = Storage::path(self::CHAT_FILENAME);
-        file_put_contents($fullPath, $coded_data, LOCK_EX);
     }
 }
