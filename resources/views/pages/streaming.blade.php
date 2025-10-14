@@ -8,12 +8,10 @@
     </div>
 
     <div>
-        <div class="position-static">
-            <div class="position-absolute bottom-0 start-0">
-                <button id="chat-button" class="btn rounded-0 rounded-top bg-light-subtle text-light ask-question" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasChat" aria-controls="offcanvasChat">
-                    @lang('Do you have any question?')
-                </button>
-            </div>
+        <div class="position-fixed bottom-0 start-0">
+            <button id="chat-button" class="btn rounded-0 rounded-top bg-light-subtle text-light ask-question" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasChat" aria-controls="offcanvasChat">
+                @lang('Do you have any question?')
+            </button>
         </div>
 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasChat" aria-labelledby="offcanvasChatLabel">
@@ -39,7 +37,7 @@
                 // Register Amazon IVS as playback technology for Video.js
                 registerIVSTech(videojs);
 
-                //// Initialize player
+                // Initialize player
                 var player = videojs('amazon-ivs-videojs', {
                    techOrder: ["AmazonIVS"]
                 }, () => {
