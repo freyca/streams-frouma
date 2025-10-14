@@ -11,3 +11,18 @@
         </p>
     @endforeach
 </div>
+
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        Livewire.on('scrollToBottom', () => {
+            // Wait until Livewire finishes the DOM diff AND the browser paints it
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    const chat = document.querySelector('#chat-content');
+                    const last = chat?.lastElementChild;
+                    if (last) last.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    });
+</script>

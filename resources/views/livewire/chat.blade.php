@@ -4,7 +4,19 @@
 
         <div class="input-group">
             <input type="text" class="form-control border-dark rounded-0 rounded-top bg-body-secondary" wire:model="question">
-            <button type="submit" class="btn btn-info rounded-0 rounded-top border-0 btn-send">@lang('Send')</button>
+            <button
+                type="submit"
+                class="btn btn-info rounded-0 rounded-top border-0 btn-send"
+                wire:loading.attr="disabled"
+                wire:target="sendMessage"
+            >
+                <span wire:loading.remove wire:target="sendMessage">
+                    @lang('Send')
+                </span>
+                <span wire:loading wire:target="sendMessage">
+                    @lang('Sending...')
+                </span>
+            </button>
         </div>
     </form>
 </div>

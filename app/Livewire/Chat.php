@@ -34,6 +34,8 @@ class Chat extends Component
 
         $this->messageReceived();
 
+        sleep(1);
+
         $this->reset('question');
     }
 

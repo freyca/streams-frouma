@@ -11,6 +11,8 @@ class ChatQuestions extends Component
 {
     public array $messages = [];
 
+    public int $chat_message_num = 0;
+
     protected ChatService $chat_service;
 
     public function boot(ChatService $chat_service)
@@ -31,6 +33,12 @@ class ChatQuestions extends Component
             Auth::user(),
             request(),
         );
+
+        if ($this->chat_message_num !== count($this->messages)) {
+            $this->chat_message_num = count($this->messages);
+
+            $this->dispatch('scrollToBottom');
+        }
 
         return view('livewire.chat-questions');
     }

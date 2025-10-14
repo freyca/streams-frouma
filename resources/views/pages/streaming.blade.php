@@ -1,8 +1,7 @@
-<x-layouts.stream>
+<x-layouts.app>
     {{--
     @vite([ 'resources/js/videojs.js' ])
     --}}
-
 
     <div class="container">
         <div class="row">
@@ -51,6 +50,16 @@
                player.src(PLAYBACK_URL);
             });
         })();
-    </script>
 
-</x-layouts.stream>
+        // Shows last question on opening chat
+        document.querySelector("#chat-button").addEventListener("click", function() {
+            scrollLastQuestionIntoView();
+        });
+
+        function scrollLastQuestionIntoView() {
+            const chat = document.querySelector('#chat-content');
+            const last = chat?.lastElementChild;
+            if (last) last.scrollIntoView();
+        }
+    </script>
+</x-layouts.app>
