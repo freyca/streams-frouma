@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\LoginHistory;
-use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Writer;
@@ -49,7 +48,7 @@ class ExportUserLogins extends Command
 
         $csv->toString();
 
-        $this->info('CSV created: ' . storage_path(self::CSV_FILENAME));
+        $this->info('CSV created: '.storage_path(self::CSV_FILENAME));
 
         return self::SUCCESS;
     }

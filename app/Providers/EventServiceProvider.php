@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         UpdateUserLogout::class => [
             LogSuccessfulLogin::class,
-        ]
+        ],
     ];
 
     /**

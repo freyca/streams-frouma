@@ -12,7 +12,7 @@ class Chat extends Component
 
     protected ChatService $chat_service;
 
-    public function boot(ChatService $chat_service,)
+    public function boot(ChatService $chat_service)
     {
         $this->chat_service = $chat_service;
     }

@@ -21,7 +21,7 @@ class ClearChatCommand extends Command
      */
     protected $description = 'Clears the chat questions';
 
-    public function __construct(public ChatService $chat_service,)
+    public function __construct(public ChatService $chat_service)
     {
         parent::__construct();
     }
@@ -33,7 +33,7 @@ class ClearChatCommand extends Command
     {
         $this->chat_service->clearChat();
 
-        $this->info('Chat cleared correctly: ' . storage_path('/app/chat_log.json'));
+        $this->info('Chat cleared correctly: '.storage_path('/app/chat_log.json'));
 
         return self::SUCCESS;
     }

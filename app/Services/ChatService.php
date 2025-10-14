@@ -26,7 +26,7 @@ class ChatService
     public function clearChat()
     {
         $new_chat_filename = explode('.', self::CHAT_FILENAME)[0];
-        $new_chat_filename = $new_chat_filename . '_' . Str::random(6) . '_' . now()->format('d-Y-m') . '.json';
+        $new_chat_filename = $new_chat_filename.'_'.Str::random(6).'_'.now()->format('d-Y-m').'.json';
 
         if (Storage::exists(self::CHAT_FILENAME)) {
             Storage::move(self::CHAT_FILENAME, $new_chat_filename);

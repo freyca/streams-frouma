@@ -21,7 +21,7 @@ class LoginHistory extends Model
     {
         $lastLogin = $event->user->loginHistory->where('ip', $event->request->ip)->last();
 
-        if (!$lastLogin) {
+        if (! $lastLogin) {
             self::create([
                 'user_id' => $event->user->id,
                 'ip_address' => $event->request->ip(),
@@ -35,12 +35,13 @@ class LoginHistory extends Model
 
         if ($diffInSeconds < 300) {
             $lastLogin->touch();
+
             return;
         }
 
         self::create([
             'user_id' => $event->user->id,
-            'ip_address'   => $event->request->ip(),
+            'ip_address' => $event->request->ip(),
         ]);
     }
 }

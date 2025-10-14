@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Events\UpdateUserLogout;
 use App\Services\ChatService;
-use App\Traits\InteractsWithChat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -14,7 +13,7 @@ class ChatQuestions extends Component
 
     protected ChatService $chat_service;
 
-    public function boot(ChatService $chat_service,)
+    public function boot(ChatService $chat_service)
     {
         $this->chat_service = $chat_service;
     }
