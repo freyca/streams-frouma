@@ -25,7 +25,7 @@ class ExportUserLogins extends Command
 
     protected $csv_header = ['email', 'name', 'ip', 'login_at', 'logout_at'];
 
-    protected $csv_name = 'login_history.csv';
+    protected const CSV_FILENAME = 'login_history.csv';
 
     /**
      * Execute the console command.
@@ -58,18 +58,18 @@ class ExportUserLogins extends Command
 
         $csv->toString();
 
-        $this->info('CSV created: ' . storage_path($this->csv_name));
+        $this->info('CSV created: ' . storage_path(self::CSV_FILENAME));
 
         return self::SUCCESS;
     }
 
     private function openCsvFileAsWrite()
     {
-        if (Storage::disk('local')->exists($this->csv_name)) {
-            Storage::disk('local')->delete($this->csv_name);
+        if (Storage::exists(self::CSV_FILENAME)) {
+            Storage::delete(self::CSV_FILENAME);
         }
 
-        $writer = Writer::createFromPath(storage_path($this->csv_name), 'w+');
+        $writer = Writer::createFromPath(storage_path(self::CSV_FILENAME), 'w+');
 
         return $writer;
     }

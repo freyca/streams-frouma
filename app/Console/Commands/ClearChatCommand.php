@@ -29,5 +29,9 @@ class ClearChatCommand extends Command
     public function handle()
     {
         $this->clearChat();
+
+        $this->info('Chat cleared correctly: ' . storage_path('/app/chat_log.json'));
+
+        return self::SUCCESS;
     }
 }
