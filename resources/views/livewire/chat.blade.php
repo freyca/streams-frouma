@@ -3,12 +3,18 @@
         @csrf
 
         <div class="input-group">
-            <input type="text" class="form-control border-dark rounded-0 rounded-top bg-body-secondary" wire:model="question">
+            <input
+                type="text"
+                class="form-control border-dark rounded-0 rounded-top bg-body-secondary"
+                wire:model="question"
+            >
+
             <button
                 type="submit"
                 class="btn btn-info rounded-0 rounded-top border-0 btn-send"
                 wire:loading.attr="disabled"
                 wire:target="sendMessage"
+                :disabled="$wire.question.length < 3"
             >
                 <span wire:loading.remove wire:target="sendMessage">
                     @lang('Send')
