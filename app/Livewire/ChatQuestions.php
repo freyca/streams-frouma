@@ -3,19 +3,25 @@
 namespace App\Livewire;
 
 use App\Events\UpdateUserLogout;
+use App\Services\ChatService;
 use App\Traits\InteractsWithChat;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ChatQuestions extends Component
 {
-    use InteractsWithChat;
-
     public array $messages = [];
+
+    protected ChatService $chat_service;
+
+    public function boot(ChatService $chat_service,)
+    {
+        $this->chat_service = $chat_service;
+    }
 
     public function mount()
     {
-        $this->initChat();
+        $this->chat_service->initChat();
 
         $this->fetchChatMessages();
     }
@@ -26,11 +32,12 @@ class ChatQuestions extends Component
             Auth::user(),
             request(),
         );
+
         return view('livewire.chat-questions');
     }
 
     public function fetchChatMessages()
     {
-        $this->messages = $this->getChatMessages();
+        $this->messages = $this->chat_service->getChatMessages();
     }
 }

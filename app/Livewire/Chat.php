@@ -2,19 +2,24 @@
 
 namespace App\Livewire;
 
-use App\Traits\InteractsWithChat;
+use App\Services\ChatService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Chat extends Component
 {
-    use InteractsWithChat;
-
     public string $question = '';
+
+    protected ChatService $chat_service;
+
+    public function boot(ChatService $chat_service,)
+    {
+        $this->chat_service = $chat_service;
+    }
 
     public function mount()
     {
-        $this->initChat();
+        $this->chat_service->initChat();
     }
 
     public function sendMessage()
@@ -39,7 +44,7 @@ class Chat extends Component
 
     public function messageReceived()
     {
-        $this->saveChatQuestion(
+        $this->chat_service->saveChatQuestion(
             date('H:i'),
             auth()->user()->name,
             $this->question,

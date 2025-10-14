@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Traits;
+namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-trait InteractsWithChat
+class ChatService
 {
     protected const CHAT_FILENAME = 'chat_log.json';
 
-    protected function initChat()
+    public function initChat()
     {
         if (Storage::exists(self::CHAT_FILENAME)) {
             return;
@@ -18,12 +18,12 @@ trait InteractsWithChat
         Storage::put(self::CHAT_FILENAME, '[]');
     }
 
-    protected function getChatMessages()
+    public function getChatMessages()
     {
         return json_decode(Storage::get(self::CHAT_FILENAME), true) ?? [];
     }
 
-    protected function clearChat()
+    public function clearChat()
     {
         $new_chat_filename = explode('.', self::CHAT_FILENAME)[0];
         $new_chat_filename = $new_chat_filename . '_' . Str::random(6) . '_' . now()->format('d-Y-m') . '.json';
@@ -35,7 +35,7 @@ trait InteractsWithChat
         $this->initChat();
     }
 
-    protected function saveChatQuestion(string $date, string $user, string $question)
+    public function saveChatQuestion(string $date, string $user, string $question)
     {
         $chat_file_contents = Storage::get(self::CHAT_FILENAME);
         $actual_decoded_data = json_decode($chat_file_contents, true);

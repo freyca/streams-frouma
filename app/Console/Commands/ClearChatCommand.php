@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Traits\InteractsWithChat;
+use App\Services\ChatService;
 use Illuminate\Console\Command;
 
 class ClearChatCommand extends Command
 {
-    use InteractsWithChat;
-
     /**
      * The name and signature of the console command.
      *
@@ -23,12 +21,17 @@ class ClearChatCommand extends Command
      */
     protected $description = 'Clears the chat questions';
 
+    public function __construct(public ChatService $chat_service,)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->clearChat();
+        $this->chat_service->clearChat();
 
         $this->info('Chat cleared correctly: ' . storage_path('/app/chat_log.json'));
 
