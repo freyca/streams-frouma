@@ -30,12 +30,12 @@ class UserAccountCreated extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject(__('Your account for') . ' ' . config('app.name') . ' ' . __('has been created'))
-            ->greeting(__('Hello!') . ' ' . $notifiable->name . '!')
-            ->line(__('We have created your account for') . ' ' . config('app.name'))
-            ->line(__('You can log in with the following credentials') . ':')
-            ->line('**' . __('Email') . ':** ' . $notifiable->email)
-            ->line('**' . __('Password') . ':** ' . $this->password)
+            ->subject(__('Your account for').' '.config('app.name').' '.__('has been created'))
+            ->greeting(__('Hello!').' '.$notifiable->name.'!')
+            ->line(__('We have created your account for').' '.config('app.name'))
+            ->line(__('You can log in with the following credentials').':')
+            ->line('**'.__('Email').':** '.$notifiable->email)
+            ->line('**'.__('Password').':** '.$this->password)
             ->action(__('Log in'), url('/'))
             ->line(__('Thank you for watching our stream.'));
     }

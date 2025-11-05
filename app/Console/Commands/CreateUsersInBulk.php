@@ -5,9 +5,8 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Notifications\UserAccountCreated;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CreateUsersInBulk extends Command
 {
@@ -41,7 +40,7 @@ class CreateUsersInBulk extends Command
             $user = $this->createUser($email, $password);
             $this->notifyUser($user, $password);
 
-            $this->info('User created successfully: ' . $email);
+            $this->info('User created successfully: '.$email);
         }
     }
 
