@@ -19,7 +19,7 @@ class LoginHistory extends Model
 
     public static function updateLogoutTimestamp(UpdateUserLogout $event)
     {
-        $lastLogin = $event->user->loginHistory->where('ip', $event->request->ip)->last();
+        $lastLogin = $event->user->loginHistory()->where('ip_address', $event->request->ip())->get()->last();
 
         if (! $lastLogin) {
             self::create([
