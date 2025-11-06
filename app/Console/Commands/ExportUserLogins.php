@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\LoginHistory;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Writer;
@@ -36,19 +36,21 @@ class ExportUserLogins extends Command
 
         $csv->insertOne($this->csv_header);
 
-        LoginHistory::with('user')->get()->each(function ($login_record) use ($csv) {
-            $csv->insertOne([
-                $login_record->user->email,
-                $login_record->user->name,
-                $login_record->ip_address,
-                $login_record->created_at,
-                $login_record->updated_at,
-            ]);
+        User::with('loginHistory')->get()->each(function ($user) use ($csv) {
+            $user->loginHistory->each(function ($loginHistory) use ($csv, $user) {
+                $csv->insertOne([
+                    $user->email,
+                    $user->name,
+                    $loginHistory->ip_address,
+                    $loginHistory->created_at,
+                    $loginHistory->updated_at,
+                ]);
+            });
         });
 
         $csv->toString();
 
-        $this->info('CSV created: '.storage_path(self::CSV_FILENAME));
+        $this->info('CSV created: ' . storage_path(self::CSV_FILENAME));
 
         return self::SUCCESS;
     }
