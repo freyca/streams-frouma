@@ -2,9 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Events\UpdateUserLogout;
 use App\Services\ChatService;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ChatQuestions extends Component
@@ -29,11 +27,6 @@ class ChatQuestions extends Component
 
     public function render()
     {
-        UpdateUserLogout::dispatch(
-            Auth::user(),
-            request(),
-        );
-
         if ($this->chat_message_num !== count($this->messages)) {
             $this->chat_message_num = count($this->messages);
 

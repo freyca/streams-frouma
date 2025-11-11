@@ -50,7 +50,7 @@ class ExportUserLogins extends Command
 
         $csv->toString();
 
-        $this->info('CSV created: ' . storage_path(self::CSV_FILENAME));
+        $this->info('CSV created: '.storage_path(self::CSV_FILENAME));
 
         return self::SUCCESS;
     }
